@@ -1,11 +1,13 @@
-package com.callor.hello;
+package com.callor.hello.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.callor.hello.impl.UserServiceImpl;
 import com.callor.hello.models.UserDto;
+import com.callor.hello.service.UserService;
 
 /**
  * 
@@ -27,6 +29,22 @@ import com.callor.hello.models.UserDto;
 @Controller
 @RequestMapping(value = "/user")
 public class UserController {
+	/*생성자에 아무준비가 되지않은 매개변수를 선언하는 것  
+	 * 미리 준비되어있는 userService bean 을 나에게 달라
+	 * 나에게 객체를 주입해달라(DI: Dependency Injection) 
+	 * */
+	
+	private final UserService userService;
+	
+	
+	
+	public UserController(UserService userService) {
+		// 기존의 Java 방식으로 클래스를 객체로 생성하기
+//		userService = new UserServiceImpl();
+		
+		// di 로 받은 userService 객체를 사용하기
+		this.userService = userService;
+	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login() {
@@ -45,8 +63,19 @@ public class UserController {
 		return null;
 	}
 
+	
+	/**
+	 * UserService.getUser() method 를 호출하여
+	 * 샘플 사용자 정보를 받아서 jsp 파일로 보내주기
+	 */
 	@RequestMapping(value = "/join", method = RequestMethod.GET)
-	public String join() {
+	public String join(Model model) {
+		// UserSErvice 를 UserController 의 여러 method 에서
+		// 사용을 해야 한다 라면? 어떻게?
+		
+		UserDto user = userService.getUser();
+		model.addAttribute("USER",user);
+		
 		return null;
 	}
 
