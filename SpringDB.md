@@ -3,6 +3,8 @@
 - 근래에 SpringMVC 프로젝트에서 `JAP` 방식의 사용이 점점 증가하고 있지만. 현업 실무에서는 아직도 `MyBatis` 방식이 아주 많이 사용되고 있다.
 
 ## Java 에서 DBMS 연결하기
+- java 에는 `JDBC` 라고 하는 표준 DB 연결 도구가 준비되어 있다.
+- `DBMS` 가 달라도 최소한 `JDBC`의 연결 커넥션 인터페이스는 표준화 되어있다.
 
 ## SpringMVC + MyBatis 연동 프로젝트 구현하기
 - 필요한 Dependency 가져오기
@@ -19,7 +21,7 @@
 <dependency>
     <groupId>org.mybatis</groupId>
     <artifactId>mybatis-spring</artifactId>
-    <version>3.0.3</version>
+    <version>3.0.0</version>
 </dependency>
 
 
@@ -40,3 +42,4 @@
 ```
 
 - `주의할점` : `spring-jdbc` 는 `spring-webmvc` 버전일치시킬 것
+- `주의할점` : `mybatis-spring` 버전 유의, SpringFramework 5.2.x 버전, Java 17 미만 버전에서는 `3.0.0` 이하를 사용해야한다.

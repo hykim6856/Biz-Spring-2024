@@ -6,20 +6,17 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+
 @Getter
 @Setter
 @ToString
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
+public class ProductVO {
 
-public class UserDto {
-
-
-	
-	private String username;
-	private String password;
-	private String name;
-	private String email;
-	private String tel;
+	private String p_code; // varchar(6) NO PRI
+	private String p_name; //varchar(25)	NO
+	private String p_item; // varchar(25)	NO
+	private String p_price; //int	NO	
 }

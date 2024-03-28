@@ -6,20 +6,16 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+
 @Getter
 @Setter
 @ToString
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
+public class OrdersVO {
 
-public class UserDto {
-
-
-	
-	private String username;
-	private String password;
-	private String name;
-	private String email;
-	private String tel;
+	private String o_num; // varchar(6) NO PRI
+	private String o_date; // varchar(10) NO
+	private String o_ccode; // varchar(5) YES MUL
 }

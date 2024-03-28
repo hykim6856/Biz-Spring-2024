@@ -1,40 +1,57 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:set var="rootPath" value="${pageContext.request.contextPath}"/>
+<c:set var="rootPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
+<html lang="ko">
+<%@ include file="/WEB-INF/views/include/head.jsp"%>
+<style>
+form.w3-container {
+	width: 60%;
+	margin: 10px auto; 
+	
+	
+	legend {
+		text-align: center;
+	}
+	
+	fieldset { 
+	border-radius : 10px;
+	padding: 16px;
+	}
+	
+	input {
+		margin-bottom: 10px;
+		border-radius: 10px;
+	}
+}
+</style>
 <body>
-	<form method="POST">
-		<div>
-			<input placeholder="아이디" name="username">
-		</div>
-		<div>
-			<input placeholder="비밀번호" name="password">
-		</div>
-		<div>
-			<input placeholder="비밀번호 확인" name="re_password">
-		</div>
-		<div>
-			<input placeholder="이름" name="name">
-		</div>
-		<div>
-			<input placeholder="이메일" name="email">
-		</div>
-		<div>
-			<input placeholder="전화번호" name="tel">
-		</div>
-		<div>
-			<input type="submit" value="회원가입">
-		</div>
+<%@ include file="/WEB-INF/views/include/header.jsp"%>
+	<form method="POST" class="w3-container">
+	<fieldset>
+	<legend>회원가입</legend>
+		<label class="w3-text-teal">USERNAME</label> 
+		<input placeholder="아이디" name="username" class="w3-input w3-border w3-light-gray">
+
+		<label class="w3-text-teal">비밀번호</label> 
+		<input placeholder="비밀번호" name="password" class="w3-input w3-border w3-light-gray">
+
+		<label class="w3-text-teal">이름</label> 
+		<input placeholder="이름" name="name" class="w3-input w3-border w3-light-gray"> 
+		
+		<label class="w3-text-teal">이메일</label>
+		<input placeholder="이메일" name="email" class="w3-input w3-border w3-light-gray"> 
+		
+		<label class="w3-text-teal">전화번호</label> 
+		<input placeholder="전화번호" name="tel" class="w3-input w3-border w3-light-gray"> 
+			
+		<input type="submit" value="회원가입" class="w3-btn w3-blue-gray w3-right">
+
+	</fieldset>
 	</form>
 	<p>${USER.username}
 	<p>${USER.password}
-	<p>${USER.re_password}
 	<p>${USER.name}
 	<p>${USER.email}
 	<p>${USER.tel}
