@@ -10,13 +10,14 @@
 <title>여기는 제목</title>
 </head>
 <body>
-<h1>고객 정보 등록</h1>
+<h1>상품 정보 등록</h1>
 <h3>${MSG}</h3>
 <form method="POST">
 
-<div><input placeholder="고객코드" name="c_code" value="${CUST.c_code}"></div>
-<div><input placeholder="고객이름" name="c_name" value="${CUST.c_name}"></div>
-<div><input placeholder="고객번호" name="c_tel" value="${CUST.c_tel}"></div>
+<div><input placeholder="상품코드" name="p_code" value="${PRODUCT.p_code}"></div>
+<div><input placeholder="상품이름" name="p_name" value="${PRODUCT.p_name}"></div>
+<div><input placeholder="품목" name="p_item" value="${PRODUCT.p_item}"></div>
+<div><input placeholder="가격" name="p_price" value="${PRODUCT.p_price}"></div>
 <div><input type="submit" value="저장"></div>
 
 </form>

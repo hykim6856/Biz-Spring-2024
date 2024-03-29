@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.callor.hello.persistance.ProductDao">
+
+
+	<insert id="insert" parameterType="ProductVO">
+		Insert into
+		tbl_product(p_code,p_name,p_item,p_price)
+		VALUES(#{p_code},#{p_name},#{p_item},#{p_price});
+	</insert>
+	
+	<update id="update">
+	UPDATE tbl_product
+	SET p_name = #{p_name}, p_item = #{p_item}, p_price = #{p_price}
+	WHERE p_code = #{p_code}
+	
+	</update>
+	
+	
+	
+
+</mapper> 
