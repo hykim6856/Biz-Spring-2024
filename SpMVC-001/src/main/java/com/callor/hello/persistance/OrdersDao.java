@@ -2,6 +2,7 @@ package com.callor.hello.persistance;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Select;
 
 import com.callor.hello.models.OrdersVO;
@@ -26,4 +27,5 @@ public interface OrdersDao {
 	public int update(OrdersVO orderVO);
 
 	public int delete(String pk);
+
 }

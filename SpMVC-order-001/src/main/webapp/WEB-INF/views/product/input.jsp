@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="rootPath" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
+<%@ include file="/WEB-INF/views/include/head.jsp" %>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -10,8 +11,8 @@
 <title>여기는 제목</title>
 </head>
 <body>
+<%@ include file="/WEB-INF/views/include/head.jsp" %>
 <h1>상품 정보 등록</h1>
-<h3>${MSG}</h3>
 <form method="POST">
 
 <div><input placeholder="상품코드" name="p_code" value="${PRODUCT.p_code}"></div>

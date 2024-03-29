@@ -30,6 +30,7 @@ div.w3-card-4 {
 				<img alt="" src="${rootPath}/static/images/cat.png" width="150px">
 				<h5>${PRODUCT.p_code}</h5>
 				<h5>${PRODUCT.p_item}</h5>
+				<h5>${PRODUCT.p_price} 원</h5>
 			</div>
 			<div class="w3-section w3-center">
 				<input data-pcode="${PRODUCT.p_code}" type="button" value="수정"

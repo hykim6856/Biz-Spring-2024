@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.callor.hello.models.CustomVO;
 import com.callor.hello.models.ProductVO;
 import com.callor.hello.persistance.ProductDao;
 
@@ -59,17 +58,58 @@ public class ProductController {
 		}
 	}
 
-	/*
-	 * 거래처 코드를 전달받아 거래처를 select 하고 select 한 거래처 정보를 detail 화면에서 보여주기
-	 */
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)
 	public String detail(@RequestParam("p_code") String pCode, Model model,
 			@RequestParam(name = "msg", required = false, defaultValue = "OK") String msg) {
 		ProductVO productVO = productDao.findById(pCode);
 
-		model.addAttribute("CUST", productVO);
+		model.addAttribute("PRODUCT", productVO);
 		model.addAttribute("MSG", msg);
 		return "product/detail";
 
 	}
+	
+	@RequestMapping(value = "/update", method = RequestMethod.GET)
+	public String update(@RequestParam("pcode") String pCode, Model model) {
+		ProductVO productVO = productDao.findById(pCode);
+		model.addAttribute("PRODUCT", productVO);
+
+		return "product/input";
+
+	}
+
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public String update(ProductVO productVO) {
+		log.debug("Update{}", productVO.toString());
+		int result = productDao.update(productVO);
+		String retString = String.format("redirect:/product/detail?p_code=%s", productVO.getP_code());
+		return retString;
+
+	}
+
+	/*
+	 * URl(URI) 에 부착된 변수 값 추출하기
+	 * 
+	 * @PathVariable("이름") 으로 값을 추출한다.
+	 */
+
+	@RequestMapping(value = "/delete/{pcode}", method = RequestMethod.GET)
+	public String delete(@PathVariable("pcode") String pCode) {
+		int result = 0;
+		result = productDao.delete(pCode);
+		try {
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			return "redirect:/product/detail?p_code=" + pCode + "&msg=FK";
+		}
+
+		if (result > 0) {
+			return "redirect:/product";
+
+		} else {
+			return "redirect:/product/detail?p_code=" + pCode + "&msg=NOT";
+		}
+	}
+
 }

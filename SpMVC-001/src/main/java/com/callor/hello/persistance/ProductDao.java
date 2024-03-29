@@ -2,6 +2,7 @@ package com.callor.hello.persistance;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Select;
 
 import com.callor.hello.models.ProductVO;
@@ -20,5 +21,7 @@ public interface ProductDao {
 
     public int update(ProductVO productVO);
 
-    public int delete(String pk);
+    @Delete("DELETE FROM tbl_product WHERE p_code = #{pCode}")
+    public int delete(String pCode);
+//    public int delete(String pk);
 }

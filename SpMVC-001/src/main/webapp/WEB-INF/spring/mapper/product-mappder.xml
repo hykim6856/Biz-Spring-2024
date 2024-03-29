@@ -18,8 +18,10 @@
 	WHERE p_code = #{p_code}
 	
 	</update>
-	
-	
+	<!-- 
+	  <delete id="delete" parameterType="String">
+        DELETE FROM tbl_product WHERE p_code = #{pCode}
+    </delete> -->
 	
 
 </mapper> 
