@@ -1,18 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="rootPath" value="${pageContext.request.contextPath}" />
-
-
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ERP 2024</title>
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <style>
-a {
-	text-decoration: none;
+.w3-green {
+	text-shadow: 1px 1px 1px black;
+	font-weight: 900
 }
 </style>
-</head>
+<header class="w3-container w3-green w3-padding-24 w3-center">
+	<h1>매입매출관리</h1>
+</header>

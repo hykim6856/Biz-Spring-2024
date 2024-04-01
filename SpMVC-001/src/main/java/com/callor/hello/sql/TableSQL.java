@@ -2,10 +2,10 @@ package com.callor.hello.sql;
 
 public class TableSQL {
 
-	public final static String ORDER_CUSTOM = " select * " 
-			+ " from tbl_orders O " 
-			+ " Join tbl_customer C "
-			+ " ON O.o_ccode = c.c_code " 
-			+ " ORDER BY O.o_num ";
+	public final static String IO_LIST = 
+			"SELECT io_seq, io_date, io_time, io_pname, "
+			+ " CASE WHEN io_input = '1' THEN io_price  END AS io_iprice, "
+			+ " CASE WHEN io_input = '2' THEN io_price END AS io_oprice, " 
+			+ " io_quan" + "FROM tbl_iolist ";
 
 }
