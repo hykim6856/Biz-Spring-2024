@@ -14,6 +14,8 @@ const NAV = {
   매입매출관리: { name: "매입매출관리", url: "/iolist" },
   로그인: { name: "로그인", url: "/user/login" },
   마이페이지: { name: "마이페이지", url: "/user/mypage" },
+  로그아웃: { name: "로그아웃", url: "/user/logout" },
+  회원가입: { name: "회원가입", url: "/user/join" },
 };
 
 document.addEventListener("DOMContentLoaded", () => {

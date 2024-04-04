@@ -4,7 +4,7 @@
 <c:set var="rootPath" value="${pageContext.request.contextPath}"/>
 <script > const onDelete = ()=>{
 	if(confirm("정말삭제할까요?")){
-		document.location.replace("${rootPath}/delete/${IO.io_seq}")
+		document.location.replace("${rootPath}/iolist/delete/${IO.io_seq}")
 	}
 }
 </script>

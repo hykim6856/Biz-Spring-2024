@@ -17,6 +17,12 @@
 	<%@ include file="/WEB-INF/views/iolist/detail.jsp"%>
 
 	</c:if>
+		<c:if test="${BODY == 'USER_LOGIN' }">
+	<%@ include file="/WEB-INF/views/user/login.jsp"%>
+
+	</c:if>
+
+
 	</section>
 	<footer class="main">
 		<address>CopyRight &copy; hykim6856@gmail.com</address>

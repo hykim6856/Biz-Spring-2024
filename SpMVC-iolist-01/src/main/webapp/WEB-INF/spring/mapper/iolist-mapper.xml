@@ -51,7 +51,6 @@ ORDER BY io_date DESC, io_time DESC
 			io_total = #{io_total}
 	</insert>
 	<update id="update"></update>
-	<delete id="delete"></delete>
 
 	<select id="create_iolist_table">
 		CREATE TABLE IF NOT EXISTS tbl_iolist (
