@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
   const iolist_body = document.querySelector("table.iolist tbody");
-
   iolist_body.addEventListener("click", (e) => {
     const target = e.target;
     if (target.tagName === "TD") {

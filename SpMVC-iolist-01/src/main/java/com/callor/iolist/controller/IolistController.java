@@ -55,7 +55,7 @@ public class IolistController {
 
 		/*
 		 * Builder pattern 을 사용하여 IolistVo 객채 생성하기 Builder5 pattern 을 사용하면 필요한 필드에 값만
-		 * 세팅하면서 객체를 생성할 수 있다.
+		 * 세팅하면서 객체를 생성할 수 있다
 		 */
 		IolistVO vo = IolistVO.builder().io_date(locaDateTime.format(dayFormatter))
 				.io_time(locaDateTime.format(timeFormatter)).build();

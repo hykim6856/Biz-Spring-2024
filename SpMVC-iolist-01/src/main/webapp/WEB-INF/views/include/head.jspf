@@ -30,14 +30,14 @@ a {
 }
 </style>
 <link rel="stylesheet"
-	href="${rootPath}/static/css/main.css?2024-04-02-004">
+	href="${rootPath}/static/css/main.css?2024-04-02-005">
 <link rel="stylesheet"
-	href="${rootPath}/static/css/iolist.css?2024-04-04-006">
+	href="${rootPath}/static/css/iolist.css?2024-04-04-007">
 
 <script>
 	const rootPath = "${rootPath}"
-	/*el 태그이다.*/
+	/*el 태그이다. */
 </script>
-<script src="${rootPath}/static/js/main.js?2024-04-04-003"></script>
-<script src="${rootPath}/static/js/iolist.js?2024-04-04-002"></script>
+<script src="${rootPath}/static/js/main.js?2024-04-04-004"></script>
+<script src="${rootPath}/static/js/iolist.js?2024-04-04-003"></script>
 </head>

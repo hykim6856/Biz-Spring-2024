@@ -18,6 +18,7 @@
 			<th>매출합계</th>
 		</tr>
 	</thead>
+	
 	<tbody>
 	<c:forEach items="${IOLIST}" var="IO" varStatus="INDEX">
 	<tr data-seq="${IO.io_seq}">
