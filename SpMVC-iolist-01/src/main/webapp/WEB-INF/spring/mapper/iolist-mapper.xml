@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.callor.iolist.persistance.IolistDao">
+
+
+	<insert id="insert" parameterType="IolistVO">
+		INSERT INTO tbl_iolist (
+			io_seq,
+			io_date,
+			io_time,
+			io_input,
+			io_pname,
+			io_price,
+			io_quan,
+			io_total
+		)VALUES(
+			#{io_seq},
+			#{io_date},
+			#{io_time},
+			#{io_input},
+			#{io_pname},
+			#{io_price},
+			#{io_quan},
+			#{io_total}
+		);
+	</insert>
+	<update id="update"></update>
+	<delete id="delete"></delete>
+
+	<select id="create_iolist_table">
+		CREATE TABLE IF NOT EXISTS tbl_iolist (
+			io_seq INT PRIMARY KEY AUTO_INCREMENT,
+			io_date VARCHAR(10) NOT NULL,
+			io_time VARCHAR(10) NOT NULL,
+			io_input VARCHAR(1) NOT NULL,
+			io_pname VARCHAR(30) NOT NULL,
+			io_price INT NOT NULL,
+			io_quan INT NOT NULL,
+			io_total INT
+		)
+	</select>
+
+</mapper> 

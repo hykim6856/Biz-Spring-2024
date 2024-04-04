@@ -7,24 +7,24 @@ document.addEventListener("DOMContentLoaded", () => {
     const target = e.target;
     if ((target.tagName = "TD")) {
       const TR = target.closest("TR");
-      const io_seq = TR.dataset.io_seq;
-      alert(io_seq);
-      document.location.href = `${rootPath}/detail?io_seq=${io_seq}`;
+      const seq = TR.dataset.seq;
+      alert(seq);
+      document.location.href = `${rootPath}/detail?io_seq=${seq}`;
     }
   };
 
   iolist_body?.addEventListener("click", iolist_body_onClick_handler);
   btn_update.addEventListener("click", (e) => {
-    const io_seq = e.target.dataset.io_seq;
-    // alert(io_seq);
-    document.location.href = `${rootPath}/update?io_seq=${io_seq}`;
+    const seq = e.target.dataset.seq;
+    // alert(seq);
+    document.location.href = `${rootPath}/update?io_seq=${seq}`;
   });
 
   btn_delete.addEventListener("click", (e) => {
-    const io_seq = e.target.dataset.io_seq;
+    const seq = e.target.dataset.seq;
 
     if (confirm("정말 삭제할까요?")) {
-      document.location.replace(`${rootPath}/delete/${io_seq}`);
+      document.location.replace(`${rootPath}/delete/${seq}`);
     }
   });
 });

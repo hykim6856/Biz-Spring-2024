@@ -44,7 +44,9 @@ public class HomeController {
 	public String insert() {
 		return "input";
 	}
+
 	
+	//=======================================
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
 	public String insert(IolistVO vo, Model model) {
 		try {
@@ -62,14 +64,13 @@ public class HomeController {
 			return "input";
 		}
 	}
+
+	//=======================================
 	
-	/*
-	 * 거래처 코드를 전달받아 거래처를 select 하고 select 한 거래처 정보를 detail 화면에서 보여주기
-	 */
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)
-	public String detail(@RequestParam("io_seq") String io_seq, Model model,
+	public String detail(@RequestParam("io_seq") String seq, Model model,
 			@RequestParam(name = "msg", required = false, defaultValue = "OK") String msg) {
-		IolistVO iolistVO = iolistDao.findById(io_seq);
+		IolistVO iolistVO = iolistDao.findById(seq);
 
 		model.addAttribute("IOLIST", iolistVO);
 		model.addAttribute("MSG", msg);
@@ -77,9 +78,10 @@ public class HomeController {
 
 	}
 
+	//=======================================
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
-	public String update(@RequestParam("io_seq") String io_seq, Model model) {
-		IolistVO iolistVO = iolistDao.findById(io_seq);
+	public String update(@RequestParam("io_seq") String seq, Model model) {
+		IolistVO iolistVO = iolistDao.findById(seq);
 		model.addAttribute("IOLIST", iolistVO);
 
 		return "input";
@@ -88,12 +90,14 @@ public class HomeController {
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String update(IolistVO iolistVO) {
-		int result = iolistDao.update(iolistVO);
+//		iolistDao.update(iolistVO);
 		String retString = String.format("redirect:/detail?io_seq=%s", iolistVO.getIo_seq());
 		return retString;
 
 	}
+
 	
+	//=======================================
 	@RequestMapping(value = "/delete/{io_seq}", method = RequestMethod.GET)
 	public String delete(@PathVariable("io_seq") String io_seq) {
 		int result = 0;
@@ -112,6 +116,5 @@ public class HomeController {
 			return "redirect:/detail?io_seq=" + io_seq + "&msg=NOT";
 		}
 	}
-	
 
 }

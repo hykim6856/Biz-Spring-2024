@@ -14,8 +14,8 @@ public interface IolistDao {
 
 	public int insert(IolistVO vo);
 
-	@Select("SELECT * FROM tbl_iolist" + " WHERE io_seq = #{io_seq}")
-	public IolistVO findById(String io_seq);
+	@Select("SELECT * FROM tbl_iolist" + " WHERE io_seq = #{seq}")
+	public IolistVO findById(String seq);
 
 	public int update(IolistVO iolistVO);
 

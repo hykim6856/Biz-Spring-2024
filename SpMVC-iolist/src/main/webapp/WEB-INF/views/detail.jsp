@@ -35,9 +35,9 @@ div.w3-card-4 {
 				<p>${IOLIST.io_quan}</p>
 			</div>
 			<div class="w3-section w3-center">
-				<input data-ioseq="${IOLIST.io_seq}" type="button" value="수정"
+				<input data-seq="${IOLIST.io_seq}" type="button" value="수정"
 					class="btn_update w3-button w3-green" /> <input
-					data-ioseq="${IOLIST.io_seq}" type="button" value="삭제"
+					data-seq="${IOLIST.io_seq}" type="button" value="삭제"
 					class="btn_delete w3-button w3-red" />
 			</div>
 		</div>

@@ -45,7 +45,7 @@ div.btn_box {
 				<tbody class="iolist_body">
 					<tr>
 						<c:forEach items="${IO_LIST}" var="IOLIST" varStatus="VAR">
-							<tr data-pcode=${IOLIST.io_seq} >
+							<tr data-seq=${IOLIST.io_seq} >
 								<td>${IOLIST.io_seq}</td>
 								<td>${IOLIST.io_date}</td>
 								<td>${IOLIST.io_time}</td>
