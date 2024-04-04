@@ -26,6 +26,10 @@ table.iolist td {
   border-top: 1px solid white;
 }
 
+tr.output {
+  color: blue;
+}
+
 table.iolist th {
   color: blue;
 }

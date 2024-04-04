@@ -68,10 +68,19 @@ public class IolistController {
 
 	}
 
-	@RequestMapping(value = "/insert", method = RequestMethod.POST)
-	public String insert(IolistVO iolistVO, Model model) {
+	/*
+	 * POST 로 저 주소 요청이 들어오면 모두처리
+	 */
+	@RequestMapping(value = {"/insert","/update/{seq}"}, method = RequestMethod.POST)
+	public String insertOrUpdate(@PathVariable(name= "seq", required = false, value ="") 
+	String seq, IolistVO iolistVO, Model model) {
+		
+		if( seq != null) {
+			iolistVO.setIo_seq(Long.valueOf(seq));
+		}
+		
 		log.debug(iolistVO.toString());
-		int result = iolistDao.insert(iolistVO);
+		int result = iolistDao.insertOrUpdate(iolistVO);
 		if (result > 0) {
 			return "redirect:/iolist/";
 		} else {

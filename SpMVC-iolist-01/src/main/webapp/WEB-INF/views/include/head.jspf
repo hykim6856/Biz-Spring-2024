@@ -38,6 +38,6 @@ a {
 	const rootPath = "${rootPath}"
 	/*el 태그이다. */
 </script>
-<script src="${rootPath}/static/js/main.js?2024-04-04-004"></script>
-<script src="${rootPath}/static/js/iolist.js?2024-04-04-003"></script>
+<script src="${rootPath}/static/js/main.js?2024-04-04-005"></script>
+<script src="${rootPath}/static/js/iolist.js?2024-04-04-010"></script>
 </head>

@@ -40,5 +40,13 @@ public class IolistVO {
 	private Integer io_price;// INT
 	private Integer io_quan;// INT
 	private Integer io_total;// INT
+	
+	private String io_inout;
+	private int iprice;
+	private int oprice;
+	
+	private int itotal;
+	private int ototal;
+	
 
 }

@@ -14,7 +14,7 @@
 </select></div>
 <div><label>단가</label><input name="io_price" placeholder="단가" value="${IO.io_price}"/></div>
 <div><label>수량</label><input name="io_quan" placeholder="수량" value="${IO.io_quan}"/></div>
-<div><label>합계</label><input name="io_total" placeholder="합계" value="${IO.io_total}"/></div>
-<div><label></label><input name="io_" type="submit" value="저장"/></div>
+<div><label>합계</label><input name="io_total" placeholder="합계" /></div>
+<div><label></label><input type="submit" value="저장"/></div>
 </fieldset>
 </form>
