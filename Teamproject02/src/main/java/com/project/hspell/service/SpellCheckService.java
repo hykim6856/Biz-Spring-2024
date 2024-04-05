@@ -1,5 +1,6 @@
 package com.project.hspell.service;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -16,7 +17,13 @@ public class SpellCheckService {
 	    public String checkSpelling(String word) {
 	        String url = NAVER_SPELL_CHECK_API_URL + "?q=" + word + "&color_blindness=0";
 	        String result = restTemplate.getForObject(url, String.class);
-	        // 여기서는 결과를 그대로 반환하도록 하지만, 실제로는 JSON 파싱 등의 추가 처리를 할 수 있습니다.
 	        return result;
 	    }
+	    
+	    public String getResponseFromAPI(String word) {
+	        String url = NAVER_SPELL_CHECK_API_URL + "?q=" + word + "&color_blindness=0";
+	        ResponseEntity<String> responseEntity = restTemplate.getForEntity(url, String.class);
+	        return responseEntity.getBody();
+	    }
 }
+

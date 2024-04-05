@@ -36,12 +36,27 @@ public class HomeController {
 		return "home";
 	}
 	
+
+	
 	@RequestMapping(value = "/spellcheck", method = RequestMethod.GET)
-	public String checkSpell(@RequestParam String word, Model model) {
-		 String result = spellCheckService.checkSpelling(word);
-		    model.addAttribute("result", result);
+	public String checkSpell() {
 		
-		    return "spellCheck";
+	    return "spellCheck";
 	}
+	
+	@RequestMapping(value = "/spellcheck", method = RequestMethod.POST)
+	public String checkSpell(@RequestParam(required = false) String word, Model model) {
+		 String result = "";
+		    if (word != null && !word.isEmpty()) {
+		        result = spellCheckService.checkSpelling(word);
+		    }
+	    model.addAttribute("word", word); // 입력한 단어를 모델에 추가
+	    model.addAttribute("result", result); // 결과를 모델에 추가
+	    return "spellCheck";
+	}
+	
+	
+	
+
 	
 }
