@@ -5,8 +5,8 @@
 <form class="iolist input" method="POST">
 <fieldset>
 <legend>매입매출 ${empty IO.io_seq ? '등록' : '수정' }</legend>
-<div><label>거래일자</label><input name="io_date" placeholder="거래일자" value="${IO.io_date}" type="date" READONLY/></div>
-<div><label>거래시각</label><input name="io_time" placeholder="거래시각" value="${IO.io_time}" type="time" READONLY/></div>
+<div><label>거래일자</label><input name="io_date" placeholder="거래일자" value="${IO.io_date}" type="date" /></div>
+<div><label>거래시각</label><input name="io_time" placeholder="거래시각" value="${IO.io_time}" type="time" /></div>
 <div><label>상품명</label><input name="io_pname" placeholder="상품명" value="${IO.io_pname}"/></div>
 <div><label>거래구분</label><select name="io_input">
 <option value="1"  ${IO.io_input eq '1' ? 'selected' : "" }>매입</option>

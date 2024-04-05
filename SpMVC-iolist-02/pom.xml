@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.project</groupId>
-	<artifactId>hspell</artifactId>
-	<name>Teamproject02</name>
+	<groupId>com.callor</groupId>
+	<artifactId>iolist</artifactId>
+	<name>SpMVC-iolist-01</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
-<properties>
+	<properties>
 		<java-version>11</java-version>
 		<org.springframework-version>5.2.25.RELEASE</org.springframework-version>
 		<org.aspectj-version>1.6.10</org.aspectj-version>

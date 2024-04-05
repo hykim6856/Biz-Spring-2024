@@ -6,7 +6,9 @@
     <title>Insert title here</title>
   </head>
   <body>
-    <h1>Hello!! Korea</h1>
-    <h2>The time on the Today is ${serverTime}</h2>
-  </body>
+    <h2>Spell Check Result</h2>
+    
+    <p><%= result %></p>
+    
+</body>
 </html>

@@ -47,39 +47,16 @@ public class IolistController {
 	}
 
 	@RequestMapping(value = "/insert", method = RequestMethod.GET)
-	public String insert(Model model, HttpSession httpSession) {
+	public String insert(
+			@ModelAttribute(name = "IO") IolistVO iolistVO ,
+			Model model, HttpSession httpSession) {
 
-		/*
-		 * httpsession 에 저장된 session 정보는 타입이 object이다.
-		 * 그래서 실제 상황에서는 필요한 객체 type으로 Casting(형변환) 을 해야한다.
-		 * 
-		 * float int num = 10.0f;
-		 * int num2 = (int) num1
-		 */
 		UserVO userVO = (UserVO) httpSession.getAttribute(NamesValue.SESSION.USER);
 		if(userVO == null) {
 			return "redirect:/user/login?error=needs";
 		}
-		
-		// 날짜와 관련된 java 1.8 이전 버전의 클래스
-		Date today = new Date();
-		Calendar ca = Calendar.getInstance();
-
-		// java 1.8 이상에서 사용하는 클래스
-		LocalDate localDate = LocalDate.now();
-		LocalTime localTime = LocalTime.now();
-		LocalDateTime locaDateTime = LocalDateTime.now();
-
-		DateTimeFormatter dayFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-
-		/*
-		 * Builder pattern 을 사용하여 IolistVo 객채 생성하기 Builder5 pattern 을 사용하면 필요한 필드에 값만
-		 * 세팅하면서 객체를 생성할 수 있다
-		 */
-		IolistVO vo = IolistVO.builder().io_date(locaDateTime.format(dayFormatter))
-				.io_time(locaDateTime.format(timeFormatter)).build();
-		model.addAttribute("IO", vo);
+	
+		model.addAttribute("IO", iolistVO);
 		model.addAttribute("BODY", "IOLIST_INPUT");
 		return "layout";
 //		IolistVO vo = new IolistVO();
@@ -93,7 +70,7 @@ public class IolistController {
 	 */
 	@RequestMapping(value = {"/insert","/update/{seq}"}, method = RequestMethod.POST)
 	public String insertOrUpdate(@PathVariable(name= "seq", required = false, value ="") 
-	String seq, IolistVO iolistVO, Model model) {
+	String seq, @ModelAttribute(name="IO") IolistVO iolistVO, Model model) {
 		
 		if( seq != null) {
 			iolistVO.setIo_seq(Long.valueOf(seq));
@@ -143,4 +120,15 @@ public class IolistController {
 		return new SearchDto();
 	}
 
+	@ModelAttribute(name ="IO")
+	private IolistVO iolistVO() {
+		LocalDateTime locaDateTime = LocalDateTime.now();
+		DateTimeFormatter dayFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+		IolistVO vo = IolistVO.builder().io_date(locaDateTime.format(dayFormatter))
+				.io_time(locaDateTime.format(timeFormatter)).build();
+		
+		return vo;
+	}
+	
 }
