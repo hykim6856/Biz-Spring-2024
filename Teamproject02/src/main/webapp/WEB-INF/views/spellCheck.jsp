@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8" />
 <title>맞춤법 검사</title>
 
 <script src="${rootPath}/static/js/spellCheck.js"></script>

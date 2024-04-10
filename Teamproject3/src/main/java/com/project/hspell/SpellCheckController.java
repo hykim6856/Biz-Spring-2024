@@ -1,3 +1,4 @@
+package com.project.hspell;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +18,7 @@ public class SpellCheckController {
     public String spellCheck(@RequestParam("text") String text, Model model) {
         // 맞춤법 검사를 위한 URL
         String spellCheckUrl = "https://m.search.naver.com/p/csearch/ocontent/util/SpellerProxy?passportKey=3bdb8b5033cd0aa81f05834a6a32cab78663c7dc&q=" + text + "&color_blindness=0";
-
+        //https://m.search.naver.com/p/csearch/ocontent/util/SpellerProxy?passportKey=c01bf8e7961efa1d326d0d7cf4187074705df85b&_callback=jQuery&q={여기부분}&color_blindness=0
         // RestTemplate을 사용하여 API 호출
         RestTemplate restTemplate = new RestTemplate();
         String result = restTemplate.getForObject(spellCheckUrl, String.class);

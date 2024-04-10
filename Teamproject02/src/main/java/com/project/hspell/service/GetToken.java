@@ -17,6 +17,7 @@ public class GetToken {
 	public String updateToken() {
 		try {
 			ResponseEntity<String> responseEntity = restTemplate.getForEntity(
+					//https://m.search.naver.com/p/csearch/ocontent/util/SpellerProxy?passportKey=c01bf8e7961efa1d326d0d7cf4187074705df85b&_callback=jQuery&q={글자}&color_blindness=0
 					"https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=1&ie=utf8&query=맞춤법검사기",
 					String.class);
 			String html = responseEntity.getBody();
