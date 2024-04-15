@@ -21,8 +21,8 @@
 			<li><a href="${rootPath}/user/join"> 로그인</a></li>
 		</sec:authorize>
 		<sec:authorize access="isAuthenticated()">
-			<li><a href="${rootPath}/user/join"> 
-			<sec:authentication property="principal.username" />
+			<li><a href="${rootPath}/user/join"> <sec:authentication
+						property="principal.username" />
 			</a></li>
 			<li>로그아웃</li>
 		</sec:authorize>

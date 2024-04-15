@@ -4,28 +4,24 @@
 <%@ taglib uri="http://www.springframework.org/security/tags"
 	prefix="sec"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="f"%>
-
 <c:set var="rootPath" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8" />
 <title>Insert title here</title>
+<script>
+const rootPath = "${rootPath}"
+</script>
+<script src="${rootPath}/static/js/user.js?2024-04-15"></script>
 </head>
 <body>
 	<h1>회원가입 및 로그인 구현</h1>
-	<ul>
-		<li>Home</li>
-		<sec:authorize access="isAnonymous()">
-			<li><a href="${rootPath}/user/join"> 회원가입</a></li>
-			<li><a href="${rootPath}/user/join"> 로그인</a></li>
-		</sec:authorize>
-		<sec:authorize access="isAuthenticated()">
-			<li><a href="${rootPath}/user/join"> 
-			<sec:authentication property="principal.username" />
-			</a></li>
-			<li>로그아웃</li>
-		</sec:authorize>
-	</ul>
+	<f:form class="join">
+	<div><input placeholder="USERNAME" name="u_name" ></div>
+	<div><input placeholder="PASSWORD" name="u_password" ></div>
+	<div><input placeholder="RE_PASSWORD" name="re_password" ></div>
+	<div><button type="button" >회원가입</button></div>
+	</f:form>
 </body>
 </html>
