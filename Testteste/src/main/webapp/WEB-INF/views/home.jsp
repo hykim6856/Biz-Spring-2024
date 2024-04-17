@@ -17,9 +17,9 @@
     });
 
     // 텍스트에 밑줄 추가하는 함수
-    function addUnderline(text) {
+   /*  function addUnderline(text) {
       $('#displayText').html('<span style="text-decoration: underline red;">' + text + '</span>');
-    }
+    } */
 
     const textarea = document.getElementById("inputText");
     const currentCharDisplay = document.getElementById("currentChar");
@@ -43,15 +43,25 @@
       var inputText = $('#inputText').val();
       var passportKey = "5496c35ef39c4f74e482a25efd18eaf5e92ac3fc";
       $.getJSON("https://m.search.naver.com/p/csearch/ocontent/util/SpellerProxy?passportKey=" 
-    		  + passportKey + "&_callback=jQuery&q=" 
+    		  + passportKey + "&q=" 
     		  + inputText + "&where=nexearch&color_blindness=0", 
     		  function(data) {
         var htmlText = data.message.result.html;
+        console.log(htmlText);
         $("#displayText").html(htmlText);
+        
       });
     });
   });
 </script>
+<style>
+  em.green_text {
+    color: blue;
+  }
+  em.red_text {
+    color: red;
+  }
+</style>
 </head>
 <body>
 <h1>Hello!! Korea</h1>
