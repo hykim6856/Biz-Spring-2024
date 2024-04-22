@@ -14,6 +14,7 @@
 	padding: 0;
 }
 </style>
+<link rel="shortcut icon" href="#">
 <link rel="stylesheet" href="${rootPath}/static/css/main.css?2024-04-18-005">
 </head>
 <script>
