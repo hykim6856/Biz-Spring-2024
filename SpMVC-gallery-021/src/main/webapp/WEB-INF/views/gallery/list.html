@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html
+  lang="ko"
+  xmlns="http://www.thymeleaf.org"
+  xmlns:layout="http://ultraq.net.nx/thymeleaf/layout"
+  layout:decorate="~{/home}"
+>
+  <section layout:fragment="content">
+    <link
+      rel="stylesheet"
+      href="../../../static/css/gallery.css"
+      th:href="@{/static/css/gallery.css}"
+    />
+    <section class="gallery">
+      <a href="../gallery/input.html" th:href="@{/gallery/insert}"
+        >이미지 업로드</a
+      >
+    </section>
+    <section class="gallery container">
+      <div class="gallery card" th:each="GA, item:${GALLERYS}">
+        <div>
+          <img
+            th:src="${GA.g_image}"
+            src="../../../static/images/noimage.png"
+            width="100px"
+          />
+          <h3 th:text="${GA.g_subject}" class="gallery subject">
+            이미지 제목
+          </h3>
+        </div>
+      </div>
+    </section>
+  </section>
+</html>

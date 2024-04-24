@@ -14,3 +14,7 @@ CREATE TABLE tbl_gallerys (
 );
 
 desc tbl_gallerys;
+
+
+SELECT * FROM tbl_gallerys;
+select length(g_image) from tbl_gallerys;

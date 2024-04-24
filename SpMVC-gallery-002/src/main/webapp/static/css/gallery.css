@@ -1,0 +1,29 @@
+section.gallery {
+  width: 90%;
+  margin: 10px auto;
+}
+section.gallery.container {
+  display: flex;
+  border: 1px solid #aaa;
+  flex-wrap: wrap;
+  /* justify-content: center; */
+  align-items: center;
+  gap: 10px;
+  border-radius: 20px;
+  padding: 10px;
+}
+
+div.gallery.card {
+  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.2);
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  div {
+    flex: 1;
+  }
+  .gallery.subject {
+    background-color: lightskyblue;
+    color: white;
+  }
+}

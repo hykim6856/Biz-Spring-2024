@@ -23,8 +23,10 @@
 	<bean id="factoryBean"
 		class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="ds"></property>
-		<property name="typeAliases" value="com.callor.gallery.models.UserVO"></property>
-		<!-- <property name="mapperLocations" value="/WEB-INF/spring/mapper/*-mapper.xml"></property> -->
+		<property name="typeAliases"
+			value="com.callor.gallery.models.UserVO"></property>
+		<property name="mapperLocations"
+			value="/WEB-INF/spring/mapper/*-mapper.xml"></property>
 
 	</bean>
 
@@ -32,13 +34,15 @@
 		<constructor-arg ref="factoryBean" />
 
 	</bean>
-	
-	<tx:annotation-driven/>
-	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="ds"/>
+
+	<tx:annotation-driven />
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="ds" />
 	</bean>
-	
-	<mybatis-spring:scan base-package="com.callor.gallery.dao"/>
+
+	<mybatis-spring:scan
+		base-package="com.callor.gallery.dao" />
 
 
 </beans>
