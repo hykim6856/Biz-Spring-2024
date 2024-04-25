@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.callor.gallery.dao.GalleryDao;
+import com.callor.gallery.dao.ImagesDao;
 import com.callor.gallery.models.GalleryVO;
 import com.callor.gallery.service.FileUploadService;
 import com.callor.gallery.service.GalleryService;
@@ -20,11 +21,13 @@ public class GalleryServiceImpl implements GalleryService {
 
 	private final GalleryDao galleryDao;
 	private final FileUploadService fileUploadService;
-
-	public GalleryServiceImpl(GalleryDao galleryDao, FileUploadService fileUploadService) {
+	private final ImagesDao imagesDao;
+	
+	public GalleryServiceImpl(GalleryDao galleryDao, FileUploadService fileUploadService,ImagesDao imagesDao) {
 		super();
 		this.galleryDao = galleryDao;
 		this.fileUploadService = fileUploadService;
+		this.imagesDao = imagesDao;
 		galleryDao.create_table(null);
 
 	}
@@ -32,6 +35,7 @@ public class GalleryServiceImpl implements GalleryService {
 	@Autowired
 	public void create_table() {
 		galleryDao.create_table(null);
+		imagesDao.create_table(null);
 	}
 
 	@Override
