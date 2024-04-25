@@ -1,8 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const fileInput = document.querySelector("input.file");
+  const fileInput = document.querySelector("input.file.single");
+  const filesInput = document.querySelector("input.file.multi");
   const prevImg = document.querySelector("img.gallery");
   const imgBorderBox = document.querySelector("div.image");
   const base64Box = document.querySelector("textarea.base64");
+  const multiImageBox = document.querySelector("div.image.multi");
 
   /*
   업로드할 이미지를 base64 방식으로 encoding 하는 함수
@@ -16,51 +18,19 @@ document.addEventListener("DOMContentLoaded", () => {
   base64 로 변환된 파일을 압축하여, jpeg 로 변환하면 용량문제를 다소 해결할수 있다.
 
   */
-  const ecodeImageFileAsBase64 = async (image) => {
+
+  const encodeImageFileAsBase64 = async (image) => {
     return new Promise((resoleve, _) => {
       const reader = new FileReader();
       reader.onloadend = () => {
-        const myImage = new Image();
-        const imageBase64 = reader.result;
-
-        myImage.src = imageBase64;
-        myImage.onload = (e) => {
-          /*
-           Image 객체(myImage) 에 이미지가 load 되면
-           화면에 2d 가상 canvas 를 생성하고
-           그 canvas 에 myImage 에 담긴 이미지를 그려라
-           */
-          const myCanvas = document.createElement("canvas");
-          const context = myCanvas.getContext("2d");
-          // 그려줄 이미지 크기만큼 canvas 크기 지정하기
-          myCanvas.width = e.target.width;
-          myCanvas.height = e.target.height;
-          context.drawImage(e.target, 0, 0);
-          // canvas 에 그려진 이미지를 jpeg 로 변환하고 크기를 0.5
-          let point = 1.0;
-          let reSizeImage = myCanvas.toDataURL("image/jpeg", point);
-          const imageSize = 2 * 1024 * 1024; // 2MByte
-
-          // 압축한 이미지 크기가 2M 보다 크면 계속 일정 비율만큼 압축 실행하기
-          while (reSizeImage.length > imageSize) {
-            if (point < 0.01) {
-              break;
-            }
-            point -= 0.01;
-            reSizeImage = myCanvas.toDataURL("image/jpeg", point);
-          }
-          if (reSizeImage.length > imageSize) {
-            alert("이미지가 너무 큽니다. 업로드 할수 없습니다.");
-            return false;
-          }
-          resoleve(reSizeImage);
-        };
+        resoleve(reader.result);
       };
       reader.readAsDataURL(image);
     });
   };
 
-  prevImg.addEventListener("click", () => fileInput.click());
+  // prevImg.addEventListener("click", () => fileInput.click());
+  prevImg.addEventListener("click", () => filesInput.click());
 
   imgBorderBox.addEventListener("paste", async (e) => {
     const items = e.clipboardData.items;
@@ -76,35 +46,41 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!blob) {
         return null;
       }
-      const base64 = await ecodeImageFileAsBase64(blob);
+      const base64 = await encodeImageFileAsBase64(blob);
       prevImg.src = base64;
       base64Box.value = base64;
-      //   // 파일을 읽기 위한 도구(클래스)
-      //   const reader = new FileReader();
-      //   // 파일이 모두 load(읽히기) 되었으면
-      //   reader.onloadend = () => {
-      //     prevImg.src = reader.result;
-      //   };
-      //   // 파일을 읽어라 라는 명령
-      //   reader.readAsDataURL(blob);
     } else {
       alert("이미지만 붙여 넣기 하세요");
     }
   });
 
+  const filePreView = async (file) => {
+    const base64 = await encodeImageFileAsBase64(file);
+    if (base64) {
+      const img = document.createElement("img");
+      img.style.width = "100px";
+      img.src = base64;
+      multiImageBox.appendChild(img);
+    }
+
+    // prevImg.src = base64;
+    // base64Box.value = base64;
+  };
+
+  filesInput.addEventListener("change", async (e) => {
+    const files = e.target.files;
+    multiImageBox.innerHTML = "";
+    for (let file of files) {
+      await filePreView(file);
+    }
+  });
   fileInput.addEventListener("change", async (e) => {
     const target = e.target;
     const file = target.files[0];
-    // alert(file.name);
-    const base64 = await ecodeImageFileAsBase64(file);
-    prevImg.src = base64;
-    base64Box.value = base64;
+    await filePreView(file);
 
-    // const reader = new FileReader();
-
-    // reader.onloadend = () => {
-    //   prevImg.src = reader.result;
-    // };
-    // reader.readAsDataURL(file);
+    // const base64 = await encodeImageFileAsBase64(file);
+    // prevImg.src = base64;
+    // base64Box.value = base64;
   });
 });
