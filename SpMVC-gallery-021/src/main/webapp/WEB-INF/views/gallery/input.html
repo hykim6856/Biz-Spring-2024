@@ -20,7 +20,13 @@
         <form method="POST" enctype="multipart/form-data">
           <fieldset>
             <legend>이미지 업로드</legend>
-            <div><input type="text" placeholder="제목" /></div>
+            <div>
+              <input
+                type="text"
+                placeholder="제목"
+                name="g_subject"
+              />
+            </div>
             <div>
               <textarea
                 placeholder="이미지 설명"
@@ -47,6 +53,9 @@
             <div><input type="submit" value="저장" /></div>
           </fieldset>
         </form>
+        <img
+          th:src="@{/upload/{image}(image=${GALLERY.g_up_image})}"
+        />
       </article>
     </section>
   </section>

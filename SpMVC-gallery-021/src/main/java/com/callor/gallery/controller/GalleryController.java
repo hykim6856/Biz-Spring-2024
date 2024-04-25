@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.callor.gallery.dao.GalleryDao;
 import com.callor.gallery.models.GalleryVO;
+import com.callor.gallery.service.GalleryService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -18,19 +18,16 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @RequestMapping(value = "/gallery")
 public class GalleryController {
+ 
+	private final GalleryService galleryService;
 	
-	private final GalleryDao galleryDao;
-	
-	
-	public GalleryController(GalleryDao galleryDao) {
+	public GalleryController(GalleryService galleryService) {
 		super();
-		this.galleryDao = galleryDao;
+		this.galleryService = galleryService;
 	}
-
-
 	@RequestMapping(value = {"/",""}, method = RequestMethod.GET)
 	public String home(Model model) {
-		List<GalleryVO> gList = galleryDao.selectAll();
+		List<GalleryVO> gList = galleryService.selectAll();
 		model.addAttribute("GALLERYS", gList);
 		return "gallery/list";
 		
@@ -39,17 +36,24 @@ public class GalleryController {
 	public String insert() {
 		return "gallery/input";
 	}
-	
 	/*
 	 * MultipartFile : form 의 input[type="file"] tag 에 담겨서 전달되는 파일을 수신하는 객체
 	 */
 	
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
-	public String insert(GalleryVO galleryVO,
-			@RequestParam("image_file")
-			MultipartFile image_file) {
-		
+	public String insert(GalleryVO galleryVO, @RequestParam("image_file") MultipartFile image_file, Model model) {
 		log.debug("파일 업로드 {}", image_file.getOriginalFilename());
+		GalleryVO resultVo = null;
+		try {
+			resultVo = galleryService.createGallery(galleryVO,image_file);
+			model.addAttribute("GALLERY",resultVo);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		model.addAttribute("IMAGE",image_file.getOriginalFilename());
 		
 		return "gallery/input";
 	}
