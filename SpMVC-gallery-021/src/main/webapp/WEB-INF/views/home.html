@@ -29,8 +29,8 @@
       const rootPath = /*[[@{/}]]*/
     </script>
     <script
-      src="../../static/js/main_nav.js"
-      th:src="@{/static/js/main_nav.js}"
+      src="../../static/js/main_nav.js?123"
+      th:src="@{/static/js/main_nav.js?123}"
       th:inline="javascript"
     ></script>
   </head>
@@ -38,11 +38,34 @@
     <header class="main">
       <h1>이미지 갤러리 2024 v2</h1>
       <div>
-        <a href="./user/login.html" th:href="@{/user/login}"
+        <a
+          href="./user/login.html"
+          th:href="@{/user/login}"
+          sec:authorize="isAnonymous()"
           >로그인</a
         >
-        <a href="./user/join.html" th:href="@{/user/join}"
+        <a
+          href="./user/join.html"
+          th:href="@{/user/join}"
+          sec:authorize="isAnonymous()"
           >회원가입</a
+        >
+
+        <a
+          href=""
+          th:href="@{/user/mypage}"
+          sec:authorize="isAuthenticated()"
+        >
+          마이페이지(<span
+            sec:authentication="principal.username"
+          ></span
+          >)
+        </a>
+        <a
+          href=""
+          th:href="@{/user/logout}"
+          sec:authorize="isAuthenticated()"
+          >로그아웃</a
         >
       </div>
     </header>

@@ -7,12 +7,14 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.callor.gallery.dao.GalleryDao;
 import com.callor.gallery.dao.ImagesDao;
 import com.callor.gallery.models.GalleryVO;
+import com.callor.gallery.models.ImageVO;
 import com.callor.gallery.service.FileUploadService;
 import com.callor.gallery.service.GalleryService;
 
@@ -44,22 +46,18 @@ public class GalleryServiceImpl implements GalleryService {
 		return galleryDao.selectAll();
 	}
 
+	
+	
 	@Override
 	public GalleryVO createGallery(GalleryVO galleryVO, MultipartFile image_file) throws Exception {
+	
 		
-		galleryVO.setG_id(UUID.randomUUID().toString());
+		setGalleryOptions(galleryVO);
+		String fileName = fileUploadService.fileUpload(image_file);
 
 		galleryVO.setG_origin_image(image_file.getOriginalFilename());
-		String fileName = fileUploadService.fileUpload(image_file);
 		galleryVO.setG_up_image(fileName);
 
-		LocalDateTime lt = LocalDateTime.now();
-		DateTimeFormatter date = DateTimeFormatter.ofPattern("YYYY-MM-dd");
-		DateTimeFormatter time = DateTimeFormatter.ofPattern("HH:mm:ss");
-		
-		galleryVO.setG_date(lt.format(date));
-		galleryVO.setG_time(lt.format(time));
-		galleryVO.setG_auth("hykim6856@naver.com");
 		
 		int ret = galleryDao.insert(galleryVO);
 		if (ret > 0) {
@@ -69,14 +67,44 @@ public class GalleryServiceImpl implements GalleryService {
 		return null;
 	}
 
+	/*
+	 * 멀티 파일을 업로드 했을때 사용할 메소드
+	 */
+	
+	@Transactional
 	@Override
 	public List<GalleryVO> createGallery(GalleryVO galleryVO, MultipartHttpServletRequest image_files)
 			throws Exception {
+
+//		
+	
+		setGalleryOptions(galleryVO);
+		galleryVO.setG_origin_image("");
+		galleryVO.setG_up_image("");
+//		String i_gid = galleryVO.getG_id();
 		
-		List<String> result = fileUploadService.filesUpload(image_files);
+		int gRet = galleryDao.insert(galleryVO);
 		
+		//mapper의 
+		String i_gid = galleryVO.getG_id();
 		
+
+		List<ImageVO> resultNames = fileUploadService.filesUpload(image_files);
+
+		
+		int iRet = imagesDao.inserts(i_gid, resultNames);
 		return null;
 	}
 
+	private void setGalleryOptions(GalleryVO vo) {
+
+		LocalDateTime lt = LocalDateTime.now();
+		DateTimeFormatter date = DateTimeFormatter.ofPattern("YYYY-MM-dd");
+		DateTimeFormatter time = DateTimeFormatter.ofPattern("HH:mm:ss");
+		vo.setG_id(UUID.randomUUID().toString());
+		vo.setG_date(lt.format(date));
+		vo.setG_time(lt.format(time));
+		vo.setG_auth("hykim6856@naver.com");
+	}
+	
 }
