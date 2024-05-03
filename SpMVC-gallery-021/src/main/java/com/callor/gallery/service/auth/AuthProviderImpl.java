@@ -19,6 +19,9 @@ import com.callor.gallery.dao.UserDao;
 import com.callor.gallery.models.RoleVO;
 import com.callor.gallery.models.UserVO;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 //@allargsconstructor는 vo 말고는 쓰지 않는게 안전.
 @Service("authProviderImpl")
 public class AuthProviderImpl implements AuthenticationProvider{
@@ -34,6 +37,7 @@ public class AuthProviderImpl implements AuthenticationProvider{
 		this.passwordEncoder = passwordEncoder;
 		this.userDao = userDao;
 		this.roleDao = roleDao;
+		log.debug("생성자");
 	}
 
 	@Override
@@ -41,8 +45,11 @@ public class AuthProviderImpl implements AuthenticationProvider{
 		String username = authentication.getName();
 		String password = authentication.getCredentials().toString();
 		
-		if(username == null || username.isBlank() || !username.equalsIgnoreCase("callor")) {
-			throw new UsernameNotFoundException("사용자이름확인");
+		log.debug("USERNAME {}, PASSWORD {}",username,password);
+
+		
+		if(username == null || username.isBlank() ) {
+			throw new UsernameNotFoundException("사용자이름을 입력해주세요");
 		}
 			
 		UserVO userVO = userDao.findById(username);
@@ -52,7 +59,7 @@ public class AuthProviderImpl implements AuthenticationProvider{
 			
 		}
 		if(password == null || password.isBlank()) {
-			throw new BadCredentialsException("비밀번호 확인");
+			throw new BadCredentialsException("비밀번호 입력해주세요");
 		}
 		
 		if(!passwordEncoder.matches(password, userVO.getPassword())) {

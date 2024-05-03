@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
   navs.forEach((key) => {
     if (pathArr.join(" ").includes(key)) {
       document
-        .querySelector(`nav.main li${key}`)
+        .querySelector(`nav.main li.${key}`)
         ?.classList.add("active");
     }
   });

@@ -8,7 +8,7 @@
         </encoder>
     </appender>
 
-    <logger name="org.springframework" level="INFO"/>
+    <logger name="org.springframework" level="DEBUG"/>
     <logger name="org.mybatis" level="INFO"/>
 
 
@@ -29,7 +29,7 @@
     </logger>
 
 
-    <root level="WARN">
+    <root level="DEBUG">
         <appender-ref ref="STDOUT"/>
     </root>
 </configuration>

@@ -24,13 +24,12 @@
 			login-processing-url="/user/login"
 			username-parameter="username"
 			password-parameter="password"
-			authentication-success-forward-url="/"
+			authentication-failure-url="/user/login/fail"
 		/>
 		<sec:logout 
 			invalidate-session="true"
-			delete-cookies="true"
 			logout-success-url="/"
-			logout-url="/user/login"
+			logout-url="/user/logout"
 		/>
 	</sec:http>
 	
