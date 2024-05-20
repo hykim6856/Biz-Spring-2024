@@ -1,0 +1,50 @@
+@charset "UTF-8";
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+form.image.input {
+  width: 80%;
+  margin: 10px auto;
+  div {
+    width: 95%;
+    input,
+    textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      outline: none;
+      border-radius: 10px;
+    }
+  }
+}
+
+form.image {
+  input[type="file"] {
+    display: none;
+  }
+
+  div.represent {
+    border: 1px solid #ccc;
+
+    padding: 3rem;
+
+    border-radius: 10px;
+    img {
+      margin: 0 auto;
+    }
+  }
+  div.thumnail {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    justify-content: center;
+    img {
+      width: 80px;
+      border-radius: 10px;
+    }
+  }
+}
