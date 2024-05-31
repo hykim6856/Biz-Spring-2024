@@ -83,4 +83,14 @@ public class FileServiceImpl implements FileService {
 		return images;
 	}
 
+	@Override
+	public void fileDelete(String i_up_image) {
+		File deleteFile = new File(uploadDir, i_up_image);
+		if(deleteFile.exists()){
+			deleteFile.delete();
+		}
+	}
+	
+	
+
 }

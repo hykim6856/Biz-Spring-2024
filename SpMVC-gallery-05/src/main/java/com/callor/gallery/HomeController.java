@@ -66,11 +66,19 @@ public class HomeController {
 		return "redirect:/";
 	}
 	
-	@RequestMapping
-	public String detail(@PathVariable String id, Model model) {
+	@RequestMapping(value="/detail/{id}")
+	public String detail(@PathVariable("id") String id, Model model) {
 		GalleryVO gallery = galleryService.selectGalleryOne(id);
 		model.addAttribute("GALLERY",gallery);
 		return "detail";
+	}
+	
+	
+	@GetMapping(value="/delete/{id}")
+	public String delete(@PathVariable("id") String id, Model model) {
+		int ret = galleryService.delete(id);
+		
+		return "redirect:/";
 	}
 }
 

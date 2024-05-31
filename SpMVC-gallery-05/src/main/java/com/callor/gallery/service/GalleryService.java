@@ -11,5 +11,8 @@ public interface GalleryService {
 	public List<GalleryVO> selectAll();
 	public GalleryVO selectGalleryOne(String gid);
 
-	public int createGallerys(GalleryVO galleryVO, MultipartHttpServletRequest files);
+	public int createGallerys(GalleryVO galleryVO, 
+			MultipartHttpServletRequest files);
+	public int delete(String id);
+	
 }

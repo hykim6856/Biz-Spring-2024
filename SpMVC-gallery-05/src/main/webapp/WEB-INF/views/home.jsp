@@ -17,7 +17,9 @@
 				<header>
 					<h1>${G.g_subject}</h1>
 				</header>
+				<a href="${rootPath}/detail/${G.g_id}">
 				<img src="${rootPath}/upload/${G.g_image}">
+				</a>
 				<footer>
 					<div>작성자:${G.g_writer}</div>
 					<div>작성일자:${G.g_date}</div>

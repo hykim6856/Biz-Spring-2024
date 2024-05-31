@@ -27,7 +27,7 @@
 		)
 	</insert>
 	<update id="update"></update>
-	<delete id="delete"></delete>
+	<!-- <delete id="delete"></delete> -->
 
 	<select id="create_table">
 		CREATE TABLE IF NOT EXISTS tbl_gallerys(

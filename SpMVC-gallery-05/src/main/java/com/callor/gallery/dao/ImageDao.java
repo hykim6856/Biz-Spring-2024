@@ -9,7 +9,7 @@ import com.callor.gallery.models.ImagesVO;
 
 public interface ImageDao {
 
-	@Select("SELECT * FROM tbl_images" + "WHERE i_gid = #{gid} ORDER BY i_seq ")
+	@Select("SELECT * FROM tbl_images" + " WHERE i_gid = #{gid} ORDER BY i_seq ")
 	public List<ImagesVO> findByGID(String gid);
 
 	public void create_table();

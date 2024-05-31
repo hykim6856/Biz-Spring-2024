@@ -101,5 +101,28 @@ public class GalleryServiceImpl implements GalleryService {
 		vo.setG_images(images);
 		return vo;
 	}
+	/*
+	 * 파일이 첨부된 데이터를 삭제하기
+	 * 1. 첨부파일을 먼저 삭제를 해야함.
+	 *  가.DB의 데이터를 SELECT 하고 
+	 *  나. DB 정보에 있는 파일들을 삭제하고
+	 * 
+	 * 2. Table 의 데이터를 DELETE 
+	 * 
+	 */
+
+	@Override
+	public int delete(String id) {
+		// TODO Auto-generated method stub
+		List<ImagesVO> images = imageDao.findByGID(id);
+		 for(ImagesVO vo : images){
+		  fileService.fileDelete(vo.getI_up_image());
+		}
+		 GalleryVO gaVO = galleryDao.findById(id);
+		  fileService.fileDelete(gaVO.getG_image());
+		  
+		  galleryDao.delete(id);
+		  return 0;
+	}
 
 }
