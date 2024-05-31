@@ -16,6 +16,8 @@ import lombok.ToString;
 public class GalleryVO {
 
 	private String g_id;
+	private String g_date;
+	private String g_time;
 	private String g_subject;
 	private String g_content;
 	private String g_writer;

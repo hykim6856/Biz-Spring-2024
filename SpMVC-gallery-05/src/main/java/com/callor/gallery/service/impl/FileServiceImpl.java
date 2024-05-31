@@ -68,10 +68,12 @@ public class FileServiceImpl implements FileService {
 
 		List<MultipartFile> fileList = files.getFiles(Names.FILES);
 		List<ImagesVO> images = new ArrayList<>();
+		int index = 0;
 		for(MultipartFile file : fileList) {
 			String resultFileName = this.fileUp(file);
 			ImagesVO vo = ImagesVO.builder()
 								  .i_up_image(resultFileName)
+								  .i_seq(index++)
 								  .i_origin_name(file.getOriginalFilename())
 								  .build();
 			
