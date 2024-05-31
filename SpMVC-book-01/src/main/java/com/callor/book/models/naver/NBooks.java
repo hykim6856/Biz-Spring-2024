@@ -10,5 +10,8 @@ import lombok.Setter;
 import lombok.ToString;
 
 public class NBooks {
+
+	public String lastBuildDate;
+	public String total;
 	public List<NBookVO> items;
 }
