@@ -5,8 +5,6 @@
 
 <mapper namespace="com.callor.gallery.dao.GalleryDao">
 
-	<select id="selectAll"></select>
-	<select id="findById"></select>
 	<insert id="insert">
 		INSERT INTO tbl_gallerys (
 			g_id,
@@ -32,12 +30,13 @@
 	<delete id="delete"></delete>
 
 	<select id="create_table">
-		CREATE TABLE IF NOT EXISTS tbl_mygallery(
+		CREATE TABLE IF NOT EXISTS tbl_gallerys(
 		g_id VARCHAR(125) PRIMARY KEY,
 		g_date VARCHAR(125),
 		g_time VARCHAR(125),
 		g_subject VARCHAR(125),
 		g_content VARCHAR(400),
+		g_writer VARCHAR(125),
 		g_password VARCHAR(125),
 		g_image VARCHAR(225)
 		)

@@ -1,19 +1,30 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<c:set var="rootPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>Insert title here</title>
-  </head>
-  <body>
- <form method="POST" enctype="multipart/form-data">
- 	<div><input name="g_subject" placeholder="제목"/></div>
- 	<div><textarea name="g_content" rows="10" placeholder="내용"></textarea></div>
- 	<div><input name="g_writer" placeholder="작성자"/></div>
- 	<div><input name="g_password" placeholder="비밀번호" type="password"/></div>
- 	<div><input name="files" type="file" accept="image/*" multiple="multiple"/></div>
- 	<div><input type="submit" value="저장"/></div>
- 	
- </form>
-  </body>
+<head>
+<meta charset="UTF-8" />
+<title>Insert title here</title>
+<link href="${rootPath}/static/css/main.css" rel="stylesheet">
+</head>
+<body>
+	<a href="${rootPath}/insert">갤러리추가</a>
+	<section class="image list">
+		<c:forEach items="${GALLERYS}" var="G">
+			<div class="image item">
+				<header>
+					<h1>${G.g_subject}</h1>
+				</header>
+				<img src="${rootPath}/upload/${G.g_image}">
+				<footer>
+					<div>작성자:${G.g_writer}</div>
+					<div>작성일자:${G.g_date}</div>
+					<div>작성시각:${G.g_time}</div>
+				</footer>
+			</div>
+		</c:forEach>
+	</section>
+</body>
 </html>

@@ -1,5 +1,7 @@
 package com.callor.gallery.models;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -27,4 +29,6 @@ public class GalleryVO {
 	 * input tag name 속성과 같은 이름으로 vo 칼럼 이름을 만들면 절대 안됨
 	 */
 	private String g_image;
+	
+	List<ImagesVO> g_images;
 }

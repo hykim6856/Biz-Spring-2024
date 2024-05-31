@@ -8,6 +8,7 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -41,6 +42,7 @@ public class GalleryServiceImpl implements GalleryService {
 		imageDao.create_table();
 	}
 
+	@Transactional
 	@Override
 	public int createGallerys(GalleryVO galleryVO, MultipartHttpServletRequest files) {
 		List<MultipartFile> fileList = files.getFiles(Names.FILES);
@@ -56,10 +58,16 @@ public class GalleryServiceImpl implements GalleryService {
 		} else {
 			String name = fileService.fileUp(fileList.get(0));
 			galleryVO.setG_image(name);
-			int ret = galleryDao.insert(galleryVO);
+			
 		}
 		log.debug("갤러리 {}", galleryVO.toString());
-		return 0;
+		
+		
+		int ret = galleryDao.insert(galleryVO);
+		if(images.size()>1) {
+			ret = imageDao.inserts(galleryVO.getG_id(),images);			
+		}
+		return ret;
 	}
 	
 	/*
@@ -78,6 +86,20 @@ public class GalleryServiceImpl implements GalleryService {
 		galleryVO.setG_id(g_id);
 		galleryVO.setG_date(dateTime.format(today));
 		galleryVO.setG_time(dateTime.format(time));
+	}
+
+	@Override
+	public List<GalleryVO> selectAll() {
+		// TODO Auto-generated method stub
+		return galleryDao.selectAll();
+	}
+
+	@Override
+	public GalleryVO selectGalleryOne(String gid) {
+		GalleryVO vo = galleryDao.findById(gid);
+		List<ImagesVO> images = imageDao.findByGID(gid);
+		vo.setG_images(images);
+		return vo;
 	}
 
 }

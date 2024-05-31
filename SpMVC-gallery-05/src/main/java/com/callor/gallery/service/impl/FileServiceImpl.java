@@ -36,8 +36,7 @@ public class FileServiceImpl implements FileService {
 	public String fileUp(MultipartFile file) {
 
 		String originName = file.getOriginalFilename();
-		if (originName.isEmpty())
-			return null;
+		if (originName.isEmpty()) return null;
 
 		// 문자열 uploadDir 값을 File 객체로 생성(변환)
 		File path = new File(uploadDir);
@@ -72,15 +71,16 @@ public class FileServiceImpl implements FileService {
 		for(MultipartFile file : fileList) {
 			String resultFileName = this.fileUp(file);
 			ImagesVO vo = ImagesVO.builder()
-								  .i_up_image(resultFileName)
-								  .i_seq(index++)
-								  .i_origin_name(file.getOriginalFilename())
-								  .build();
+						.i_id(UUID.randomUUID().toString())
+						.i_up_image(resultFileName)
+						.i_seq(index++)
+						.i_origin_image(file.getOriginalFilename())
+						.build();
 			
 			images.add(vo);
 		}
 		
-		return null;
+		return images;
 	}
 
 }
