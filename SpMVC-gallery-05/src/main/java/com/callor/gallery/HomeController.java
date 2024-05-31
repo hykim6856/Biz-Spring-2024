@@ -36,12 +36,12 @@ public class HomeController {
 		model.addAttribute("GALLERYS",gallerys);
 		
 		
-		return "home";
+		return "include/home";
 	}
 	
 	@GetMapping(value="/insert")
 	public String insert() {
-		return "insert";
+		return "include/insert";
 	}
 	/*
 	 * Single File을 controller 에서 받을 때는 MultipartFile 을 사용하여 받고
@@ -70,7 +70,7 @@ public class HomeController {
 	public String detail(@PathVariable("id") String id, Model model) {
 		GalleryVO gallery = galleryService.selectGalleryOne(id);
 		model.addAttribute("GALLERY",gallery);
-		return "detail";
+		return "include/detail";
 	}
 	
 	
